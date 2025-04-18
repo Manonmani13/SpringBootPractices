@@ -6,13 +6,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.model.User;
+import com.example.model.Users;
 
 public class UserPrincipal implements UserDetails {
 
-    private User user;
+    private Users user;
 
-    public UserPrincipal(User user){
+    public UserPrincipal(Users user){
         this.user=user;
     }
 
