@@ -31,14 +31,28 @@ public class SEcurityCongiguration {
     @Autowired
     UserDetailsService userDetailsService;
 
+    // @Bean
+    // public SecurityFilterChain securityFilterChain(HttpSecurity httpClient) throws Exception{
+    //     httpClient.csrf(custo-> custo.disable());
+    //     httpClient.authorizeRequests(request->request.anyRequest().authenticated());
+    //     httpClient.formLogin(Customizer.withDefaults());
+    //     httpClient.httpBasic(Customizer.withDefaults());
+    //     httpClient.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+    //     return httpClient.build();
+
+    // }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpClient) throws Exception{
-        httpClient.csrf(custo-> custo.disable());
-        httpClient.authorizeRequests(request->request.anyRequest().authenticated());
-        httpClient.formLogin(Customizer.withDefaults());
-        httpClient.httpBasic(Customizer.withDefaults());
-        httpClient.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        return httpClient.build();
+        return httpClient.csrf(custo-> custo.disable())
+        .authorizeRequests(request->request
+        .requestMatchers("/admin//**").hasRole("ADMIN")
+        .requestMatchers("/user/**").hasRole("ADMIN","USER")
+        .anyRequest().authenticated())
+        .httpBasic(Customizer.withDefaults())
+        .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .build();
+    
 
     }
 
