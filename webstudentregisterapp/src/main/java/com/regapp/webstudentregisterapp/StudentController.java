@@ -3,12 +3,20 @@ package com.regapp.webstudentregisterapp;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class StudentController {
+
+    @Autowired
+    StudentRepo repo;
 
     @GetMapping("/")
     public String loadForm(Model model) {
@@ -21,4 +29,15 @@ public class StudentController {
 
         return "index";
     }
+
+    @PostMapping("/save")
+    public String handleSubmit(Student s,Model model) {
+        Student student=new Student();
+        BeanUtils.copyProperties(s, student);
+        student.setTimings(Arrays.toString(s.getTimings()));
+        repo.save(student);
+        model.addAttribute("msg", model);
+        return "index";
+    }
+    
 }
