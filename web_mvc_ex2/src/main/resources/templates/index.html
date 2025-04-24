@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <p th:text="${msg}"></p> 
+
+    <form th:action="@{/product}" th:object="${product}" method="post">
+        <table>
+            <tr>
+                <td>Product ID</td>
+                <td><input type="text" th:field="*{pid}"/></td>
+                <td th:if="${#fields.hasErrors('pid')}" th:errors="*{pid}">ID is required</td>
+            </tr>
+
+            <tr>
+                <td>Product Name</td>
+                <td><input type="text" th:field="*{pname}"/></td>
+                <td th:if="${#fields.hasErrors('pname')}" th:errors="*{pname}">Name is required</td>
+            </tr>
+
+            <tr>
+                <td>Product Price</td>
+                <td><input type="text" th:field="*{price}"/></td>
+                <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price is required</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"/></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

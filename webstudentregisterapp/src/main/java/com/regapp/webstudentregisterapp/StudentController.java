@@ -32,7 +32,7 @@ public class StudentController {
 
     @PostMapping("/save")
     public String handleSubmit(Student s,Model model) {
-        Student student=new Student();
+        Student sctudent=new Student();
         BeanUtils.copyProperties(s, student);
         student.setTimings(Arrays.toString(s.getTimings()));
         repo.save(student);
