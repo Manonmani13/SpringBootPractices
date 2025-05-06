@@ -5,5 +5,9 @@
 </head>
 <body>
     <h2>Get Your Ticket Info</h2>
+    <form action="search">
+        Ticket ID : <input type="text" name="ticketId">
+        <input type="submit" value="Search"/>
+    </form>
 </body>
 </html>
