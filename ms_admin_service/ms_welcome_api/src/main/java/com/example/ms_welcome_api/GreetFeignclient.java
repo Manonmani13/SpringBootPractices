@@ -3,7 +3,7 @@ package com.example.ms_welcome_api;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient(name="GREET_API")
+@FeignClient(name="GREET-API")
 public interface GreetFeignclient {
 
     @GetMapping("/greet")
